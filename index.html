@@ -1,0 +1,1073 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>士林電機 · AI 提示詞產生器｜黃金三角 R×C×E</title>
+<meta name="description" content="士林電機 7 BU 基層專屬 AI 提示詞產生器。選模板→改成你的→一鍵複製到 Gemini/Manus。阿峰老師企業 AI 培訓。">
+<meta name="robots" content="noindex">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#00B4D8;--brand-d:#0077A0;--ink:#1C1C1E;--grey:#5A5A60;--bg:#F5F8FA;--card:#fff;--line:#E4E9EE;--orange:#FF6B35;--navy:#0A1628;--r:#1E3A8A;--c:#0077A0;--e:#C2410C;--ok:#0A7D4F}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC","Inter",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--brand-d)}
+/* Hero */
+header.hero{background:linear-gradient(135deg,#0A1628 0%,#0077A0 60%,#00B4D8 100%);color:#fff;padding:52px 0 44px;text-align:center}
+.hero .kick{font-size:12px;letter-spacing:3px;font-weight:700;opacity:.85;font-family:Inter}
+.hero h1{font-size:32px;font-weight:900;margin:12px 0 8px;line-height:1.3}
+.hero .sub{font-size:15px;opacity:.95;margin-bottom:18px}
+.hero .motto{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:30px;padding:7px 20px;font-size:14px;font-weight:700;margin-bottom:22px}
+.stats{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
+.stat b{font-size:26px;font-weight:900;color:#fff;font-family:Inter;display:block}
+.stat span{font-size:12px;opacity:.85}
+/* Info */
+.info{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:-28px auto 20px;position:relative;box-shadow:0 8px 28px rgba(0,60,90,.10)}
+.info h2{font-size:17px;color:var(--brand-d);margin-bottom:12px}
+.rce-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.rce-box{flex:1;min-width:200px;border-radius:10px;padding:12px 14px;font-size:13px}
+.rce-box.r{background:#EEF2FF;border-left:4px solid var(--r)}
+.rce-box.c{background:#E6F4F9;border-left:4px solid var(--c)}
+.rce-box.e{background:#FFF1EA;border-left:4px solid var(--e)}
+.rce-box b{display:block;margin-bottom:3px}
+.steps{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}
+.step{flex:1;min-width:150px;background:var(--bg);border-radius:8px;padding:10px 12px}
+.step .n{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:var(--brand);color:#fff;border-radius:50%;font-weight:800;font-size:12px;margin-right:6px}
+.pilot{background:#FFF6EE;border:1px solid #FFD9C2;border-radius:10px;padding:11px 15px;font-size:13px;color:#8a4423;margin-top:14px}
+/* 資安 */
+.sec-t{font-size:19px;font-weight:800;color:var(--brand-d);margin:26px 0 14px;display:flex;align-items:center;gap:9px}
+.sec-t::before{content:"";width:6px;height:22px;background:var(--orange);border-radius:3px}
+.warn{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:14px 18px;font-size:13.5px;color:#991B1B;margin-bottom:8px}
+.warn b{color:#B91C1C}
+/* Filter */
+.tools-bar{position:sticky;top:0;z-index:20;background:var(--bg);padding:12px 0 8px;margin-bottom:6px}
+.search{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 16px;font-size:14px;font-family:inherit;margin-bottom:10px}
+.search:focus{outline:none;border-color:var(--brand)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.fbtn{border:1.5px solid var(--line);background:#fff;color:var(--grey);border-radius:22px;padding:7px 15px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
+.fbtn:hover{border-color:var(--brand)}
+.fbtn.active{background:var(--brand);border-color:var(--brand);color:#fff}
+.fbtn b{font-family:Inter;opacity:.8;margin-left:2px}
+/* Cards */
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.tcard-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;cursor:pointer}
+.tcard-head:hover{background:#FAFCFD}
+.th-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.th-meta{display:flex;gap:6px;flex-wrap:wrap}
+.th-meta span{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.badge-bu{background:var(--navy);color:#fff}
+.badge-role{background:#E6F4F9;color:var(--brand-d)}
+.badge-tool{color:#fff}
+.tool-gemini{background:#0077A0} .tool-manus{background:#6D28D9} .tool-canvas{background:#0B4DA2} .tool-meet{background:#0A7D4F}
+.badge-kind{background:#F1F3F5;color:var(--grey)}
+.th-chev{color:var(--grey);font-size:18px;transition:.2s;flex-shrink:0}
+.tcard.open .th-chev{transform:rotate(180deg)}
+.tcard-body{display:none;padding:0 20px 20px;border-top:1px solid var(--line)}
+.tcard.open .tcard-body{display:block}
+.mat{background:#FFF1EA;border:1px solid #FFD9C2;border-radius:9px;padding:9px 13px;font-size:12.5px;margin:14px 0 4px;color:#8a4423}
+.mat a{color:var(--e);font-weight:700;word-break:break-all}
+.mat-hint{color:var(--grey);margin-left:4px}
+.fld-l{display:block;font-size:13px;font-weight:700;margin:14px 0 5px;color:var(--ink)}
+.fld-l .dot{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;color:#fff;border-radius:5px;font-size:11px;font-weight:800;font-family:Inter;margin-right:5px}
+.dot.r{background:var(--r)} .dot.c{background:var(--c)} .dot.e{background:var(--e)}
+.fld-l .hint{font-weight:400;font-size:11.5px;color:var(--grey);margin-left:4px}
+.fld{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;font-size:13.5px;font-family:inherit;line-height:1.7;color:var(--ink);resize:vertical;background:#FCFDFE}
+.fld:focus{outline:none;border-color:var(--brand);background:#fff}
+.btns{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.btn-gen{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn-gen:hover{background:var(--brand-d)}
+.btn-reset{background:#fff;color:var(--grey);border:1.5px solid var(--line);border-radius:10px;padding:11px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.out-wrap{margin-top:16px}
+.out-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:var(--brand-d);margin-bottom:6px}
+.btn-copy{background:var(--ok);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-copy.done{background:#059669}
+.out{background:var(--navy);color:#E8F0F5;border-radius:10px;padding:16px 18px;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;font-family:"Noto Sans TC",monospace;max-height:340px;overflow:auto}
+.empty{text-align:center;color:var(--grey);padding:40px;display:none}
+/* Tools */
+.toollist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.tool-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 16px;font-size:13.5px}
+.tool-card b{display:block;font-size:14px;margin-bottom:2px}
+.tool-card a{font-size:12.5px;word-break:break-all}
+.tool-card .role{color:var(--grey);font-size:12px}
+/* 講師 */
+.teacher{background:var(--navy);color:#fff;border-radius:16px;padding:28px 30px;margin:22px 0}
+.teacher h3{font-size:20px;font-weight:900;margin-bottom:4px}
+.teacher .t-sub{color:#8FD4E8;font-size:13px;margin-bottom:14px}
+.teacher p{font-size:13.5px;opacity:.92;margin-bottom:8px}
+.teacher .t-contact{font-size:13px;margin-top:12px}
+.teacher .t-contact a{color:#8FD4E8}
+footer{text-align:center;padding:26px 0 40px;color:var(--grey);font-size:13px}
+footer b{color:var(--brand-d)}
+@media(max-width:600px){.hero h1{font-size:25px}.stats{gap:18px}.stat b{font-size:21px}.th-title{font-size:15px}}
+</style></head><body>
+
+<header class="hero"><div class="wrap">
+  <div class="kick">士林電機 × 阿峰老師｜工廠 AI 應用・初階實戰</div>
+  <h1>AI 提示詞產生器<br>黃金三角 R × C × E</h1>
+  <div class="sub">選一個貼近你工作的模板 → 把裡面的部門/數字改成你的 → 一鍵複製,貼到 Gemini 或 Manus</div>
+  <div class="motto">會用、懂用、好用、每天用｜你是機長,AI 是機組人員</div>
+  <div class="stats">
+    <div class="stat"><b>400+</b><span>企業培訓</span></div>
+    <div class="stat"><b>300+</b><span>場次演講</span></div>
+    <div class="stat"><b>10,000+</b><span>學員</span></div>
+    <div class="stat"><b>32</b><span>士林專屬模板</span></div>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div class="info">
+    <h2><i class="bi bi-magic"></i> 黃金三角:問對問題,AI 才幫得到你</h2>
+    <div class="rce-row">
+      <div class="rce-box r"><b>R 角色 Role</b>讓 AI 知道它是誰。一律「你是擁有 40 年經驗的…」開頭。</div>
+      <div class="rce-box c"><b>C 情境 Context</b>讓 AI 知道你在做什麼。帶真實人事時地物+數字。</div>
+      <div class="rce-box e"><b>E 期望 Expectation</b>讓 AI 知道你要什麼。格式、字數、幾點要求。</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>找到像你工作的模板(用上面分類或搜尋)</div>
+      <div class="step"><span class="n">2</span>展開 → C 情境把姓名/數字改成你的</div>
+      <div class="step"><span class="n">3</span>按「產生指令」→ 複製</div>
+      <div class="step"><span class="n">4</span>貼到 Gemini / Manus → 驗收 → 你說了算</div>
+    </div>
+    <div class="pilot"><i class="bi bi-airplane"></i> <b>機長心法:</b>AI 打草稿,你負責確認正確、判斷適合、承擔責任。AI 建議降落台中,你說台北才安全——你說了算。</div>
+  </div>
+
+  <div class="sec-t">資安提醒(先看這個)</div>
+  <div class="warn"><b>三條紅線:</b>① <b>不要輸入公司機密</b>——真實客戶名、統編、報價、財務、個資、未公開規格,一律不貼。② <b>代號化</b>——把公司/客戶/批號換成代號(A公司、批號X)再問 AI。③ <b>產出必驗證</b>——AI 會編數字、會說錯,任何要送出去的內容,你自己一定要再核對一遍。這些模板裡的姓名、批號、數字全是<u>教學模擬</u>,直接拿去用之前記得換成你自己的、可公開的資訊。</div>
+
+  <div class="sec-t">選你的模板(共 32 個・7 BU 都有)</div>
+  <div class="tools-bar">
+    <input class="search" id="search" placeholder="🔍 搜尋:打你的部門、職位或任務(例:重電、月報、催辦、簡報)" oninput="doSearch()">
+    <div class="filters"><button class="fbtn active" data-f="all" onclick="flt(this)">全部 <b>32</b></button><button class="fbtn" data-f="notify" onclick="flt(this)">📧 通知・Email・公告 <b>5</b></button><button class="fbtn" data-f="report" onclick="flt(this)">📊 報表・週報・彙報 <b>6</b></button><button class="fbtn" data-f="organize" onclick="flt(this)">🗂 資料整理・表格・交接 <b>5</b></button><button class="fbtn" data-f="meeting" onclick="flt(this)">🗣 會議記錄・待辦追蹤 <b>3</b></button><button class="fbtn" data-f="read" onclick="flt(this)">🌐 讀懂・改寫・查資料 <b>3</b></button><button class="fbtn" data-f="slides" onclick="flt(this)">🎨 做簡報・圖表 <b>10</b></button></div>
+  </div>
+
+  <div id="grid">
+<div class="tcard" data-cat="notify" data-kw="跨廠區設備異常通知信(單元2示範) EG重電 生產課員 設備異常通知">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">★ 跨廠區設備異常通知信(單元2示範)</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">生產課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">設備異常通知</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的台灣製造業工廠管理顧問,專精電機電業設備廠的品質異常處理流程與跨廠區溝通管理。你曾任職於多家上市電機設備公司的品管與製造部門,協助建立設備異常分級通報機制,深知一封品質異常通知若寫不清楚,輕則造成跨部門誤會、延誤處置,重則影響客戶出貨時程與合約罰款。你了解重電產品(變壓器、斷路器、配電盤)的製程特性,也清楚工廠基層課員在資訊傳達上常見的盲點——描述太籠統讓人抓不到重點、沒附上批號與時間戳讓追溯困難、或用語過於口語讓高層看不懂。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">士林電機重電事業部課員陳俊宏,負責配電盤組裝線的日常品質記錄。這週三早上 09:15,他在對型號 SM-12 中壓開關盤進行出廠前測試時,發現其中 2 台(批號 SL-2026-0618-04、SL-2026-0618-07)的絕緣耐壓測試值偏低,測得值分別為 22.4kV 和 21.8kV,低於規格下限 24kV。這 2 台原訂本週五出貨,客戶是台電的變電站工程,共 8 台設備,其餘 6 台測試正常。陳俊宏需要立即發一封跨部門通知給品管部、製造課長、業務部,說明異常狀況,請求緊急會議決定是否能趕工修復或需向客戶申請延期。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我撰寫一封跨部門設備異常通知 Email。要求:(1) 主旨提供 2 個版本,格式建議【緊急】[異常類型]—[批號]—[影響出貨日]。(2) 正文分四段:異常描述(具體測試數值、批號、台數)、初步研判原因、可能影響範圍(出貨時程、客戶合約)、建議緊急行動(含時間建議),每段不超過 5 行。(3) 語氣務實清楚,數字精確到小數點一位,不用「可能」「大概」等模糊詞。(4) 信尾附聯絡方式佔位(分機號)及測試記錄表附件說明。(5) 全文 280-350 字,讓忙碌主管 1 分鐘讀完做決策。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="集團月度營運摘要報告(單元2示範) SS幕僚 行政助理 月度營運摘要">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">★ 集團月度營運摘要報告(單元2示範)</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">行政助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">月度營運摘要</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業行政管理顧問,專精台灣製造業大型集團的部門績效追蹤報告設計與行政文書標準化作業。你服務過多家上市製造業集團,協助人事行政、幕僚單位建立定期報告模板,深知一份好的週報或月報要讓高層在 3 分鐘內掌握關鍵訊息,而不是讓他們翻一堆數字自己找重點。你了解製造業幕僚行政人員的實際困境:每月底要從各部門收集 20 到 30 份數據回報、整合進統一格式、再向上呈報,光靠人工往往耗掉一整天,格式一旦不統一就被主管退回重來。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">士林電機幕僚單位行政助理林佳穎,負責每月彙整集團各 BU(重電、電裝品、機器、系統工程、自動化整合、研發、幕僚)的月度人力出勤與生產稼動率數據,產出一份給執行長室的「月度營運摘要報告」。這個月收到的原始資料包含:7 個 BU 各自提交的 Excel 出勤表、每日稼動率記錄 csv 檔共 7 份、以及各部門主管用 LINE 傳來的文字說明。7 月份數據特別複雜,因為有颱風假影響 2 天(7/11、7/12),加班核銷單據比往常多出 40%,且自動化整合部有一台關鍵設備故障停機 3 天(7/14-7/16),稼動率從月均 87% 驟降至該週 61%。今天是 8 月 2 日,她有 1.5 天完成整理與撰寫。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把以上原始資料整理成可直接呈報執行長室的「7 月份月度營運摘要報告」。要求:(1) 報告分四區塊:人力出勤概況(含颱風假影響說明)、各 BU 生產稼動率比較表(橫列 BU、直欄週次、最後一欄月均值)、本月異常事件摘要、下月預計影響事項,每區塊用小標題分開。(2) 稼動率比較表以純文字固定欄寬對齊,方便貼進 Word。(3) 異常事件摘要寫清楚:日期/影響部門/影響程度(稼動率%)/目前處置狀態。(4) 語氣正式數字精確,不用「相關」「部分」等模糊詞。(5) 全文 400 字以內,附「數據來源與製表人」說明行(用佔位符)。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="notify" data-kw="全廠停電保養公告 SS幕僚 總務行政專員 Email/通知">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">全廠停電保養公告</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">總務行政專員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">Email/通知</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業行政溝通顧問,專精製造業廠區公告與跨部門通知的撰寫規範,曾協助數十家上市製造公司建立行政公告模板與發布流程。你深知一份好公告要讓產線、辦公室、警衛室三種完全不同的讀者,在 30 秒內都知道「跟我有什麼關係、我該做什麼」;寫得不清楚,當天就會有人白跑一趟或設備忘了關。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機幕僚單位的總務行政專員。工務部門用 LINE 傳來一段話:「下週六 08:00-17:00 全廠高壓設備年度保養,全區停電,UPS 只保機房,餐廳不開,加班要事先申請改到別棟,冰箱東西記得清」。主管要我今天下班前發出正式公告給全體同仁(約 800 人,含產線輪班人員),用 Email 與公佈欄兩種版本。我以前寫公告常被唸「太像聊天」,這次想一次把格式寫對。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把以上資訊整理成正式停電保養公告,產出兩個版本:(1) Email 版(全文 300 字內):主旨一行含日期與影響範圍;正文分「停電時間/影響範圍/同仁配合事項/聯絡窗口」四段,配合事項用條列、每條以動詞開頭;(2) 公佈欄版:150 字內、字句更短、重點加【】標示;(3) 兩版語氣正式但不生硬,不用「請惠予配合」這類老公文腔;(4) 聯絡窗口用佔位符(分機○○○);(5) 產線輪班同仁的注意事項單獨一條,避免只寫給辦公室的人看。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="變壓器組裝線生產週報 EG重電 生產課員 報告/週報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">變壓器組裝線生產週報</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">生產課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">報告/週報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的電機製造業生產管理顧問，專精變壓器與重電設備組裝線的產能規劃與週報制度設計，輔導過數十家電機廠建立標準化生產週報範本超過百份。你深知一份好週報要讓主管一眼看出進度落後在哪裡，而不是自己在數字堆裡找答案。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機重電事業群變壓器組裝線的生產課員，每週五要交「生產週報」給課長。這週(模擬數據)產線目標產出12台油浸式變壓器，實際完成9台，其中2台因銅線到料延誤卡在繞線站，1台因客戶(某電力公司)變更規格暫停；另有1名新進同仁教育訓練占用半天人力。我平常都是想到什麼寫什麼，上次被課長唸「進度掉在哪一站都看不出來」，這次想把週報寫清楚。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我把以上內容整理成「生產週報」：(1)四欄式：本週產出/落後原因/影響範圍/下週因應(2)每欄先講結論、數字精確到台數與站別，不用「大概、可能」，讓課長一看數字就能判斷要不要介入(3)落後原因要點出卡在哪一站，不要寫成「進度不如預期」這種看不出站別的空話(4)新增「本週提醒」一行給課長，全文220字內(5)語氣正式、條列呈現，可直接貼進報告。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="meeting" data-kw="部門月會紀錄 → 決議+待辦清單 EG重電 課務助理 會議與待辦整理">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">部門月會紀錄 → 決議+待辦清單</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">課務助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">會議與待辦整理</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的製造業行政管理總監，專精產線部門的會議記錄標準化與待辦追蹤機制設計，輔導過上百場電機廠部門月會導入決議追蹤系統，大幅減少會後各單位各自解讀的落差。你深知一份好會議紀錄要讓沒開會的人也看得懂誰要做什麼、何時要完成。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機重電事業群的課務助理，本週三部門月會由課長主持，8位組長與課級主管參加。會中討論(模擬數據)：變壓器產線良率從92%降到88%需要追原因、新到的自動化收線機下月試機、有同仁反映夜班交接單格式一直不統一。課長邊講我邊抄逐字稿，會議記錄常常寫成一大段文字，主管說看不出誰要做什麼、什麼時候要交，要我改成決議跟待辦分開的格式。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">這是這場部門月會的內容，請幫我整理成兩個區塊放進會議紀錄：(1)決議摘要，每項決議一句話、後面加一句背景原因，不要只寫結論、看不出原因(2)待辦清單表格，欄位為「待辦事項/負責人/期限/狀態」，事項描述要具體到動作(3)負責人優先寫模擬姓名(如王課長)，沒指定的先標「待指派」，期限精確到日期(4)全文含表格控制在400字內，可直接複製貼上(5)語氣簡潔正式，不要寫成逐字稿式長句。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="organize" data-kw="出廠測試數據整理成檢驗紀錄表 EG重電 品管課員 資料整理/表格">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">出廠測試數據整理成檢驗紀錄表</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">品管課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">資料整理/表格</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的電機製造業品質保證資深經理，專精出廠測試數據的檢驗紀錄表設計與稽核備查，輔導過數十家上市電機廠通過第三方品保稽核。你深知一張檢驗紀錄表若欄位對不齊、數據排列亂，稽核當天翻資料翻半天，連自己都會心慌。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機重電事業群的品管課員，負責把出廠測試的原始數據整理成檢驗紀錄表存查。這批(模擬批號 B-0710)共5台配電盤，測試項目有絕緣電阻、耐壓測試、溫升測試三項，數據原本記在測試員的手寫記錄紙與Excel兩邊，格式一直不一致。上次交出去的紀錄表被品保主管退回，說欄位亂七八糟看不出哪台對應哪個數據，要我重做一次，白白多花兩小時。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">麻煩把這批數據轉成標準「檢驗紀錄表」：(1)欄位固定為「測試項目/受測物編號/測試值/合格基準/判定」，同一測試項目的數據排在一起(2)判定欄自動寫「合格」或「不合格」，不用我自己看基準比對(3)表格最後加一行統計，共幾台合格、幾台待複測(4)不要寫成像上次那樣欄位亂跳、看不出哪台對哪個數據(5)全文含表格300字內，語氣中性專業、格式工整可直接列印存查。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="notify" data-kw="供應商交期催辦信 AG電裝品 採購助理 Email/通知">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">供應商交期催辦信</div>
+      <div class="th-meta"><span class="badge-bu">AG電裝品</span><span class="badge-role">採購助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">Email/通知</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的供應鏈採購管理專家，專精電子零組件與電裝品產業的供應商交期控管、催貨談判與異常追蹤技巧，曾輔導超過百家電子製造業與代工廠建立供應商績效評核與交期預警制度，深諳基層採購人員面對延遲交期時的溝通眉角與話術拿捏</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機AG電裝品部門的採購助理，負責跟催一批繼電器模組（型號MK-7420，模擬）的到貨，供應商是某電子零組件商，原訂7月15日交貨，已延遲兩週，產線等這批料件已停機兩天。上週我用LINE傳訊息催貨，對方已讀不回，主管在會議上唸我催貨信寫得太客氣、對方感受不到急迫性，我很想學怎麼把催貨信寫得有力道、對方會馬上處理，但又不失禮貌，不要越催越得罪供應商</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我用Gemini寫一封給供應商的交期催辦信，需求如下：(1)開頭先簡述採購單號與原訂交期，語氣專業不卑不亢(2)明確指出目前已延遲天數對產線的實際影響(3)提出具體到貨期限並要求對方24小時內回覆確認(4)保留後續合作空間，避免情緒化字眼(5)全文200字內，適合直接複製貼上寄出；不要寫成『拜託幫我加快』這種太客氣、沒有壓迫感的語氣</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="meeting" data-kw="客訴檢討會議重點摘要 AG電裝品 品保專員 會議與待辦整理">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">客訴檢討會議重點摘要</div>
+      <div class="th-meta"><span class="badge-bu">AG電裝品</span><span class="badge-role">品保專員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">會議與待辦整理</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的品質管理總監，專精電子製造業客訴分析、根本原因追溯與矯正預防措施擬定，曾輔導超過數十家電裝品與電子零組件廠建立客訴檢討會議標準作業流程，擅長把冗長的客訴檢討會議紀錄，整理成主管一看就懂的重點摘要與待辦事項</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機AG電裝品部門的品保專員，昨天下午參加一場客訴檢討會議，討論某機械設備商反映的電力斷路器（批號RC-0612，模擬）異常跳脫問題，會議開了兩小時，主管、產線組長、業務共6人輪流發言，我全程用手機錄音、邊聽邊抄筆記，會後主管要我兩天內把重點跟待辦事項整理成一頁摘要給部門主管看，但我抄的筆記亂七八糟，之前交出去的會議紀錄被唸『重點跟閒聊都寫在一起，看不出誰要做什麼』</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請用Gemini幫我把這份客訴會議記錄整理成摘要，希望做到：(1)先列會議結論與客訴根本原因，控制在50字內(2)用表格列出待辦事項，欄位為負責人、任務、期限(3)標示出需要主管裁示的事項(4)語氣中性、只陳述事實不加個人意見(5)全文含表格在300字內；不要寫成『重點跟閒聊都寫在一起』的流水帳，要讓主管一眼看出誰該做什麼、什麼時候要交</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="read" data-kw="英文規格詢問信:讀懂+擬中文回覆重點 AG電裝品 業務助理 改寫/翻譯/潤稿">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">英文規格詢問信:讀懂+擬中文回覆重點</div>
+      <div class="th-meta"><span class="badge-bu">AG電裝品</span><span class="badge-role">業務助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">改寫/翻譯/潤稿</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的國際業務溝通資深經理，專精電子零組件產業的英文技術規格書信往來與跨國客戶應對技巧，曾服務數十家電裝品與電子製造業處理海外客戶詢價、規格確認與商務書信翻譯，深諳業務助理面對艱澀技術英文規格時的緊張與回信壓力</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機AG電裝品部門的業務助理，昨天收到一封來自某東南亞機械設備商採購的英文信，詢問我們一款接觸器（型號SC-3350，模擬）的耐電流規格與交期，信裡夾雜不少專業英文縮寫，我大學修過商用英文但看得很吃力，怕漏看關鍵條件、回錯規格數字。上次我把耐壓值看錯位數，業務經理發現後緊急重寄更正信，我很怕再出這種低級錯誤，主管明天一早就要我先整理中文回覆重點給他過目</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">這封英文信我看不太懂，麻煩用Gemini幫我先讀懂再整理成中文回覆重點，請做到：(1)先用白話中文條列信裡問了哪幾個具體問題(2)標出信中出現的專業縮寫並附中文解釋(3)針對每個問題列出我該跟工程單位確認的資料(4)特別標示規格數字部分、提醒我要跟工程單位再三確認以免看錯(5)全文條列在250字內，語氣簡潔口語，讓我今天下班前能直接照著回信</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="設備稼動月報 BG機器 生產組長 報告/週報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">設備稼動月報</div>
+      <div class="th-meta"><span class="badge-bu">BG機器</span><span class="badge-role">生產組長</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">報告/週報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的機械製造產線效能管理資深經理,專精設備稼動率分析與生產月報格式設計,輔導過數十家機械電機工廠導入稼動追蹤系統,也帶過上百場產線改善會議。你深知月報若只丟一堆百分比,主管看不出問題出在人、機台還是排程,反而等於白做工。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機機器事業群的生產組長。每月 5 日前要交「設備稼動月報」給廠長,這個月我負責的 3 台立式加工中心(模擬編號 VMC-12、VMC-15、VMC-18),稼動率分別是 88%、76%、62%,VMC-18 那台 62% 是因為換模與等待物料共停機 14 小時,另外 2 台是排程滿載。上次交的月報被林廠長打回票,說整篇都是數字看不出重點,到底是人的問題還是機台老舊。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把以上資料整理成「設備稼動月報」:(1) 先給一段 3 行內的重點摘要,直接點名哪台機台拖累稼動率 (2) 主表列出機台編號、稼動率、主要停機原因 (3) 停機原因分類寫「人員/設備/排程」三種之一,不要只寫「異常」帶過 (4) 不要寫成林廠長唸過的那種流水帳數字堆,要有一句給結論的話 (5) 全文 320 字內,語氣正式、像跟主管報告,不用「可能、大概」這種模糊字眼。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="organize" data-kw="新人機台操作指引草稿 BG機器 資深課員 SOP/交接文件">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">新人機台操作指引草稿</div>
+      <div class="th-meta"><span class="badge-bu">BG機器</span><span class="badge-role">資深課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">SOP/交接文件</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的機械加工現場訓練專家,專精新進人員機台操作指引撰寫與教育訓練教材設計,帶過數十家工廠的新人訓練專案,主持過上百場產線師徒制教育訓練。你深知一份指引若步驟跳來跳去,新人學得心慌,老師傅還要重講三遍才學得會。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機機器事業群的資深課員,做這台 CNC 銑床(模擬機型 VF-2)已經 12 年。上個月來了 2 位新人,課長要我兩天內寫出一份「機台操作指引草稿」讓新人自己先看過再上機。我腦中步驟很熟,但真的要打成文字常常想到哪寫到哪,漏了「開機前確認護罩有沒有關好」這種救命的小步驟,自己都會嚇一跳,畢竟這台機台去年才夾傷過一位老師傅的手。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把以上內容整理成「新人機台操作指引草稿」:(1) 用開機前/操作中/關機後三階段編號寫,每步驟一句話講清楚動作 (2) 「確認護罩關好」這類安全動作要獨立標【安全】,放在最前面 (3) 加一段「新手最容易犯的 3 個錯」,用第一人稱口吻提醒 (4) 用詞盡量口語,避免生澀專有名詞讓新人看不懂 (5) 全文 350 字內,分段清楚,讓新人下班前能自己讀完一遍。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="organize" data-kw="保養工單彙整成追蹤表 BG機器 保養課員 資料整理/表格">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">保養工單彙整成追蹤表</div>
+      <div class="th-meta"><span class="badge-bu">BG機器</span><span class="badge-role">保養課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">資料整理/表格</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的設備保養管理總監,專精產線機台保養工單彙整與追蹤表設計,深入數十家工廠現場重整保養紀錄制度,操刀過上百次年度大保養排程規劃。你深知保養工單散落在紙本與 LINE 訊息裡,月底要對帳時,連自己都找不到哪張單子還沒結案。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機機器事業群的保養課員,手上同時開著 3 台加工機與 2 台空壓機的保養工單(模擬單號 M-2607-01 到 M-2607-08 共 8 張),有的已完工待簽核,有的還在等零件(某型號軸承估 5 天到貨)。組長要我月底整理成一張「保養工單追蹤表」讓大家一眼看出進度,我平常都是紙本工單疊一疊,常常漏登記,自己都搞不清楚哪張結案了。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把以上工單整理成一張「保養工單追蹤表」:(1) 欄位依序為工單號、機台、保養項目、目前狀態、預計完成日、備註 (2) 狀態欄只能填「已完工/待簽核/等零件」三種之一,不要自己造新詞 (3) 依「預計完成日」由近到遠排序,方便一眼看出快到期的 (4) 表格下方加 2 行文字摘要,說明本月共幾張、卡在等零件的有幾張 (5) 全文含表格 400 字內,用詞精簡,不要寫成落落長的句子。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="notify" data-kw="工地進場施工通知 ESE系統工程 工程助理 Email/通知">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">工地進場施工通知</div>
+      <div class="th-meta"><span class="badge-bu">ESE系統工程</span><span class="badge-role">工程助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">Email/通知</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的電力系統工程管理專家，專精高低壓配電盤與電氣控制設備的工地進場協調、工安交底與現場溝通管理，曾主導超過200場工業廠房與電力工程進場協調案，長期輔導基層工程人員撰寫正式對外聯繫文件並建立標準化溝通流程與範本</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ESE系統工程處的工程助理，負責文書聯繫。下週三（7月15日）我們3位工程師與2位協力廠商人員要進駐某電力公司苗栗二林區的配電盤汰換工地，工期預計12個工作天，需要在進場前2天發出正式的工地進場施工通知信給工地主任與甲方窗口，附上進場人員名單、機具設備清單與工安注意事項。之前我發的通知常常被組長退回，說看不出重點在哪，這次想一次就過關</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我用Gemini寫一封正式的工地進場施工通知信，需求如下：(1)開頭先寫收件對象與行文目的一句話 (2)分段列出進場日期時間、工程師與協力廠商人數名單、機具設備清單 (3)條列工安注意事項並附緊急聯絡窗口姓名電話 (4)全文250字內，語氣正式、有禮貌但不囉唆 (5)不要寫成像上次那種段落擠在一起、重點找不到的流水帳，要條列分明讓工地主任一眼看懂</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="客戶現場勘查出差報告 ESE系統工程 專案工程師 報告/週報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">客戶現場勘查出差報告</div>
+      <div class="th-meta"><span class="badge-bu">ESE系統工程</span><span class="badge-role">專案工程師</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">報告/週報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的電力工程專案管理總監，專精工業電力系統客戶現場會勘、出差報告撰寫與專案進度追蹤管理，曾主導超過150件工業廠房電力改善案的現場會勘與客戶溝通協調，長期協助基層工程師建立標準化出差報告格式，強調條理清楚、重點分明</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ESE系統工程處的專案工程師，上週二（7月1日）到台中某機械設備商工廠出差，會勘他們老舊配電盤更新需求，現場勘查花了6小時，記錄了3項設備規格差異與2個施工限制，還跟對方廠務課長開了30分鐘討論會議。回公司後要寫出差報告給主管跟業務窗口參考，但我每次寫報告都東拼西湊、抓不到重點，主管說看了像流水帳，還被退回重寫過一次，讓我覺得很挫折</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">我把今天勘查時手寫的雜亂重點打成一段文字，請幫我用Gemini整理成一份正式出差報告，供主管與業務窗口參考，結構要求：(1)標題含日期、地點、客戶名稱 (2)勘查目的一段簡述 (3)現場發現條列3項以上、需含具體數據與規格差異 (4)後續待辦追蹤事項條列2-3點 (5)全文400字內、語氣專業精簡，不要寫成像上次那種段落擠成一團的流水帳</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="organize" data-kw="專案文件移交清單 ESE系統工程 專案助理 SOP/交接文件">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">專案文件移交清單</div>
+      <div class="th-meta"><span class="badge-bu">ESE系統工程</span><span class="badge-role">專案助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">SOP/交接文件</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的工程專案管理資深經理，專精電力工程專案文件歸檔、交接清單製作與知識傳承制度建立，曾協助超過100個工業電力專案完成人員異動時的文件移交作業，熟悉如何將零散資料整理成清楚明確、新接手同仁一看就懂的標準化交接清單</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ESE系統工程處的專案助理，這個月要接手王姓同事離職前手上的3個進行中專案（配電盤更新、控制盤汰換、電纜佈線），對方留下的資料散落在Email、雲端硬碟跟紙本資料夾裡，總共整理出47份文件卻完全沒有分類，8月1日前就要交接完畢。上次我幫另一位離職同事整理清單時漏了2份重要合約被主管唸，這次真的不想再出包，想一次做好，不要再被唸</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">這47份文件的清單我已經打好但很亂，請用Gemini幫我整理成一份正式交接清單表格，欄位要求：(1)文件類別 (2)文件名稱 (3)存放位置（雲端/紙本） (4)目前狀態（已完成/待確認） (5)備註欄位在30字內、供接手同仁參考的提醒事項；表格語氣清楚正式、條列分明，最上方加一行三個專案名稱與交接日期，不要像上次那樣漏東西讓人看不出整理過</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="notify" data-kw="系統切換停機通知 ID自動化整合 系統工程師 Email/通知">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">系統切換停機通知</div>
+      <div class="th-meta"><span class="badge-bu">ID自動化整合</span><span class="badge-role">系統工程師</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">Email/通知</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的工業自動化系統整合顧問，專精工廠監控系統、PLC控制系統與電力配電系統的切換遷移規劃，曾主導超過九十件產線系統換裝與停機協調案，協助上百家製造業建立標準化停機通知機制，大幅降低現場人員因資訊落差產生的混亂與抱怨。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ID自動化整合的系統工程師，負責產線監控系統升級案。下週三凌晨一點到五點，要把舊監控主機切換到新系統，機型暫代號TS-07（模擬），期間監控功能全部中斷，需通知生產、品保、倉儲三部門共約四十人配合，品保那邊特別在意。上次類似停機我只用口頭通知，隔天被林組長唸『訊息講不清楚，害品保白白多等兩小時』，這次想提前用書面說清楚。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我用Gemini寫一封系統切換停機通知信，發給生產、品保、倉儲三部門約四十人。要求：(1)開頭先講清楚停機時間、地點與影響範圍(2)用條列列出各部門這段時間該注意的事項(3)加一句備援聯絡窗口與電話，方便有狀況能立刻找到人(4)語氣正式但不生硬，讓人一眼抓到重點(5)全文200字內，不要寫成像上次口頭通知那樣含糊，害人白等狀況。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="meeting" data-kw="跨部門協調會待辦追蹤 ID自動化整合 專案專員 會議與待辦整理">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">跨部門協調會待辦追蹤</div>
+      <div class="th-meta"><span class="badge-bu">ID自動化整合</span><span class="badge-role">專案專員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">會議與待辦整理</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的跨部門專案管理總監，專精大型設備導入案的會議溝通與待辦事項追蹤機制，曾主導超過上百場跨部門協調會與數十件產線設備導入案，協助製造業建立清楚可控、可追蹤進度的待辦分工模式，大幅減少會議後責任不清、事情漏追的狀況。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ID自動化整合的專案專員，上週三下午開了一場設備導入案跨部門協調會，工程、採購、品保、資訊四個單位共八人與會，會議開了近兩小時，討論到設備驗收標準、供應商到貨時間、教育訓練排程等十幾項待辦。我用手寫筆記記錄，會後整理時發現漏記兩項負責人，之前也曾因為這樣被陳專案經理唸『會議記錄亂七八糟，看不出誰要做什麼、什麼時候要完成』，這次想要更有系統地整理成清楚的待辦清單。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">這場協調會的重點我都記錄下來了，請用Gemini幫我整理成待辦追蹤表。要求：(1)用表格呈現，欄位為「待辦事項、負責單位、負責人、預計完成日」(2)十幾項待辦依工程、採購、品保、資訊四個單位分類排序(3)有時間壓力的項目在最前面，並標註「優先」(4)語氣中性、條列清楚，不要寫成像上次那樣看不出誰要做什麼的流水帳(5)全文表格化，文字說明控制在100字內。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="導入案專案進度週報 ID自動化整合 工程專員 報告/週報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">導入案專案進度週報</div>
+      <div class="th-meta"><span class="badge-bu">ID自動化整合</span><span class="badge-role">工程專員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">報告/週報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的自動化設備導入專案資深經理，專精大型產線系統導入案的進度控管與週報撰寫規劃，曾主導超過八十件跨廠自動化導入專案，協助工程團隊用簡潔明確的週報格式，讓主管快速掌握進度、風險與下一步行動，不必開會就能掌握全貌。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ID自動化整合的工程專員，負責某電力公司產線自動化導入案（案號暫代IM-114，模擬），已進行到第六週，設備安裝進度約65%，本週遇到狀況：某機械設備商的感測器（型號暫標S-22，模擬）延遲交貨三天，可能影響下週測試排程。主管每週五要收到週報，之前我寫得太細、把每天瑣事都列進去，被王經理唸『重點抓不到，看半天不知道順不順利』，這次想寫得精簡又能讓人看出風險。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我用Gemini把這些進度資訊整理成一份週報，要交給主管看。要求：(1)分成三段：本週進度、風險與問題、下週計畫(2)本週進度用一句話講完成度（例如「安裝進度65%，如期」）(3)風險段只講感測器延遲這件事，說明可能影響與因應做法(4)語氣簡潔專業，不要寫成像上次那樣把瑣事全部列出來的流水帳(5)全文150字內，用主管一分鐘看得完的長度。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="read" data-kw="技術文件摘要 → 給主管的一頁說明 LG研發 研發工程師 改寫/翻譯/潤稿">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">技術文件摘要 → 給主管的一頁說明</div>
+      <div class="th-meta"><span class="badge-bu">LG研發</span><span class="badge-role">研發工程師</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">改寫/翻譯/潤稿</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的技術文件溝通顧問，專精工程技術報告白話化改寫、跨部門摘要撰寫與主管簡報邏輯設計，曾在三十家以上電機與精密機械大廠擔任技術文件審查工作，協助上百位研發工程師，將冗長複雜的規格文件轉化為主管一看就懂的一頁摘要報告。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機LG研發的研發工程師，上週五要把一份32頁的伺服馬達散熱測試報告（模擬）整理成一頁摘要，明天上午10點要交給處長看，這是新產品線上市前的最後一次審查會議。報告裡滿滿都是溫度曲線、轉速與量測數據，上次類似摘要被主管唸「看不懂重點在哪」，這次想先用Gemini抓出重點、練習怎麼講重點，不想再被唸，也不想被說工程師只會寫細節不會表達。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請幫我把這份報告改寫成給處長看的一頁摘要，我需要：(1)開頭先講結論與具體建議，不要照原本報告的段落順序條列數據 (2)專有名詞第一次出現時，要附上一句白話解釋給非工程背景的主管看 (3)用條列式列出3個關鍵發現與對應風險等級 (4)全文500字以內，語氣簡潔正式，像是要放進簡報的講稿 (5)不要寫成塞滿溫度曲線與代號的技術規格表，那正是我上次被主管唸的問題。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="read" data-kw="把實驗紀錄丟給 Gemini 問清楚 LG研發 研究助理 查資料好問法">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">把實驗紀錄丟給 Gemini 問清楚</div>
+      <div class="th-meta"><span class="badge-bu">LG研發</span><span class="badge-role">研究助理</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">查資料好問法</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的工程實驗數據分析專家，專精實驗紀錄的邏輯校對、數據異常抓取與研究問題釐清技巧，曾指導超過兩百位研發新人與研究助理，訓練他們用正確提問方式，把原始又雜亂的實驗數據，轉化成能讓學長姐一次看懂的清楚結論。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機LG研發的研究助理，這兩週在做一批繼電器耐久測試（模擬），手上記錄本密密麻麻寫了37組測試數據與現場觀察，時間、環境溫度、故障描述全部混在一起，連我自己回頭看都覺得亂。上次拿著這種亂記的紀錄去問學長，被唸「這樣要我怎麼往下看」，這次想先自己用Gemini把邏輯理順、抓出漏洞，問清楚再去請教學長，不想再被唸一次，也想證明自己是有在動腦筋想的。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請先幫我讀懂這份實驗紀錄，再用提問的方式幫我釐清，不要直接幫我下結論：(1)指出資料中邏輯不一致或數據缺漏的地方 (2)列出3個你認為需要我補充說明的追問問題 (3)語氣像實驗室學長帶新人，用條列式整理，不要像我原始紀錄一樣把時間、溫度、故障全混在一起 (4)整體字數在300字以內 (5)未來若要查最新的業界標準或法規，改用Perplexity並附上資料來源，不要用Gemini瞎猜。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="organize" data-kw="教育訓練報名名單彙整統計 SS幕僚 人資專員 資料整理/表格">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">教育訓練報名名單彙整統計</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">人資專員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">資料整理/表格</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業教育訓練行政資深經理，專精教育訓練報名資料彙整、出缺勤統計與跨單位報表製作，曾協助超過五十家企業建立教育訓練報名管理制度，訓練基層人資人員，把來自各部門格式不一的報名表，整理成一目了然的統計總表。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機SS幕僚的人資專員，這個月要把8場教育訓練（模擬）、共194人次的報名紀錄彙整成一張總表，明天上午就要交給處長核對訓練時數。各部門回傳的Excel欄位順序、姓名格式都不一樣，有些人姓名還有全形半形空格差異，上次彙整完的名單被主管唸「這個人怎麼算了兩次，人數對不起來」，這次想先用Gemini幫忙抓出重複報名與格式不一致的地方，再重新彙整一次。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">我要一張能直接印出來交給處長的彙整表，方便他當場核對每個人的訓練時數夠不夠，請你：(1)欄位統一為姓名、部門、場次、時數、是否重複報名 (2)找出同一人重複出現的資料並標註清楚，不要漏掉 (3)最後加一列各場次總人數小計，整份表控制在一頁以內 (4)用表格呈現，欄位名稱用口語化白話字眼不要英文縮寫 (5)不要出現同一人算兩次卻沒標註的情況，那正是我上次被唸的原因。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="report" data-kw="月底結帳進度回報主管 SS幕僚 財務課員 向上彙報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">月底結帳進度回報主管</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">財務課員</span><span class="badge-tool tool-gemini">Gemini</span><span class="badge-kind">向上彙報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業財務結帳流程管理總監，專精月結進度控管、跨部門對帳協調與向上彙報邏輯設計，曾任職上市製造業財會部門逾二十年，輔導上百位基層財務人員，把繁瑣複雜的結帳進度數字，轉化成主管一聽就懂、抓得到重點的口頭回報內容。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機SS幕僚的財務課員，今天是這個月結帳的第5天，主管臨時要我在下午3點的部門會議前，先口頭回報目前結帳進度（模擬數據：18個部門已對帳完成，3個部門傳票尚未送出，1筆金額有誤差待查），主管只給我10分鐘準備。之前臨時被問進度時，我講得太細瑣被主管唸「重點到底是什麼」，這次想先用Gemini整理好重點再去報告，不想再手忙腳亂。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">等一下開會只有3分鐘報告時間，請幫我把這些進度濃縮成一份口頭報告草稿：(1)開頭先講整體完成進度的百分比，再講例外狀況 (2)未完成的3個部門，各用一句話說明卡在哪個環節 (3)金額誤差那筆只講目前處理方式與預計解決時間，不要下結論說是誰的錯 (4)全文200字以內，語氣沉穩不堆砌敬語，方便我照著唸不會結巴 (5)不要像上次一樣講得太細瑣，讓主管聽不出重點在哪。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="產線月度營運簡報 BG機器 生產專員 月會簡報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">產線月度營運簡報</div>
+      <div class="th-meta"><span class="badge-bu">BG機器</span><span class="badge-role">生產專員</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">月會簡報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1DWnC6Orps6wYu1jhV_7Oue4vNqbTfvZu/view" target="_blank" rel="noopener">S01-7月產線月度資料.docx ｜ 稼動率+產量+異常+加班,格式凌亂 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的電機製造業生產管理顧問，專精產線稼動率分析、產量落差追蹤、設備異常管理與月度營運簡報整理，累積輔導超過六十家電機與機械製造廠，經手上百場產線月會簡報製作，深諳基層人員如何把零散生產紀錄轉成主管一眼看懂的重點報告。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">陳課長在LINE丟來一句『阿明，這月月會資料先給你，7/25要用，稼動率那三台標一下哪台低』。我是士林電機BG機器的生產專員阿明，我手上VMC-12、VMC-15、VMC-18稼動率格式不一，我這邊產量目標450台只做到402台，還有7/18急單臨時插進來，我也記了3件設備異常（主軸異音等料3天），加上同仁加班累積40幾小時，資料散落多處，我得自己彙整成簡報。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請製作一份6-7頁月會簡報：(1)稼動率頁用長條圖標出VMC-12/15/18中最低那台並加註原因；(2)產量頁用達成率圖表呈現450目標對402實際，特別註記急單7/18插單造成的影響；(3)設備異常頁逐項列出項目、標負責人與改善期限；(4)人力加班概況獨立成一頁，列加班時數、部門與原因；(5)下月重點頁條列3項待辦事項並標明追蹤負責人。全文繁體中文，語氣務實精簡，字級大到後排看得清楚。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="變壓器規格建議書簡報 EG重電 業務工程師 技術提案">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">變壓器規格建議書簡報</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">業務工程師</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">技術提案</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1DeuJEWFnejZZXiUfV4pZKtxfnmQ4EJ0Y/view" target="_blank" rel="noopener">S02-變壓器規格報價雜項.docx ｜ 去年報價片段+技術差異Email+賣點碎念 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的重電設備業務簡報顧問，專精變壓器與配電設備技術規格轉譯及客戶提案簡報設計，輔導超過八十家電力設備供應商完成技術建議書與投標簡報，尤其擅長把工程單位零散的技術差異資料與歷史報價，轉換成客戶聽得懂、談得下去的採購語言。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">業務主管LINE連丟三句『這台效率比對手高那個一定要講、報價別寫死留兩成談、後天要給對方』，我是士林電機EG重電事業部的業務工程師，手上只有去年同型變壓器報價Excel片段（幣別美金台幣混填、單位kVA與MVA混用），加上工程部老李補寄的技術差異Email整段複製貼上，還有自己手打的規格賣點碎念，後天就要兜成一份能讓客戶點頭的變壓器規格建議書簡報。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">(1)產出6到8頁的變壓器規格建議書簡報，第一頁用大字標出效率比對手高的具體百分比優勢；(2)把去年報價Excel的幣別統一換算成新台幣、單位統一用kVA，整理成一張規格對照表；(3)報價頁不寫死金額，改用區間並加註『可談範圍±20%』字樣；(4)工程部技術差異Email與我手打的規格賣點碎念，一起濃縮成三到五點條列式賣點，不放整段原文；(5)最後一頁註明後天送件截止時間與負責追蹤窗口姓名。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="EV充電樁新品說明簡報 AG電裝品 產品企劃專員 產品說明">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">EV充電樁新品說明簡報</div>
+      <div class="th-meta"><span class="badge-bu">AG電裝品</span><span class="badge-role">產品企劃專員</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">產品說明</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1NSUk28rXWBAMtHlBnJ9Fj9CxyLmStEmX/view" target="_blank" rel="noopener">S03-EV充電樁規格與賣點.xlsx ｜ 亂規格表+口語賣點+slogan清單 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的工業電力設備行銷簡報顧問，專精將電機廠複雜技術規格轉譯為業務前線好懂、客戶一聽就有感的產品說明簡報與教育訓練教材，曾為數十家電力設備大廠操刀新品上市簡報、輔導業務團隊超過百場教育訓練，深諳如何把冷冰冰的規格數字變成打動人心的賣點故事。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">行銷主管在LINE上丟一句『快充速度是重點放最前面,後天業務教育訓練要用』,我是士林電機AG電裝品的產品企劃專員,手邊只有三款新機型(60kW~180kW)的EV充電樁規格Excel,充電功率跟相容車型欄位對不齊、還有三格被業務手寫塞備註,加上一份口語化業務賣點筆記、一串候選slogan清單吵成一團,我得趕在後天訓練前把這堆凌亂資料兜成一份新品說明簡報,壓力真的很大。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請用Manus把這堆資料整成一份10-12頁新品說明簡報,規格:(1)封面後第一頁就是快充速度亮點,呼應行銷主管『放最前面』的要求(2)把充電功率、相容車型整理成一張清楚對照表,取代原本欄位對不齊的Excel(3)業務口頭賣點濃縮成3-5條精簡條列,去掉口語贅字(4)從候選slogan清單挑出前3名並附選用理由(5)簡報末頁附業務回饋追蹤表,標明教育訓練後由行銷主管彙整意見窗口。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="捷運變電站機電標案比稿簡報 ESE系統工程 專案工程師 標案比稿">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">捷運變電站機電標案比稿簡報</div>
+      <div class="th-meta"><span class="badge-bu">ESE系統工程</span><span class="badge-role">專案工程師</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">標案比稿</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1HzrFXWFdChayTJmn5xIITCwus6lMGPPx/view" target="_blank" rel="noopener">S04-標案會勘與規格摘錄.docx ｜ 會勘紀錄+規格書摘錄+工期卡點 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的機電工程標案簡報顧問，專精軌道交通與電力基礎設施標案的比稿簡報策略與視覺呈現，曾協助數十家系統整合廠商操刀捷運、變電站等重大工程標案，助其在上百場比稿中脫穎而出，深知評審最在意哪些關鍵頁次配置與圖表呈現方式。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">主管在LINE催『後天要交比稿,先出一版給我看』,我是士林電機ESE系統工程的專案工程師,手上是這個月剛跑完某捷運線G07變電站的會勘手寫紀錄整理稿,設備規格跟施工限制卡在哪裡都寫在裡面,還有標案規格書重點摘錄隨手畫線、工期零星片段,全部東拼西湊塞進一份連段落標題都沒有的.docx,我今晚得把這團亂熬成一份能上台比稿的簡報,偏偏我才到職八個月,完全沒經驗可以參考。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請用Manus把這份.docx亂稿整理成一份12-15頁比稿簡報初稿,後天前先給主管過目,規格:(1)開頭先放專案理解與得標優勢,呼應標案規格書畫線的評選重點(2)設備規格與施工限制整理成一張對照表,標色註記卡關項目(3)工期零星片段整合成一張甘特圖,清楚呈現關鍵里程碑(4)每頁補上段落標題,取代原本無結構的.docx格式(5)簡報末頁附審核追蹤表,標明現場會勘資料由主管覆核確認無誤。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="RPA導入檢討會成果簡報 ID自動化整合 工程專員 檢討會簡報">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">RPA導入檢討會成果簡報</div>
+      <div class="th-meta"><span class="badge-bu">ID自動化整合</span><span class="badge-role">工程專員</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">檢討會簡報</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1QuKaOKjlir9tQGz38AYhwADDr_VZnvDS/view" target="_blank" rel="noopener">S05-RPA導入檢討會逐字稿.txt ｜ 檢討逐字稿+各單位LINE心得+零星節省數字 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的企業自動化導入顧問，專精RPA流程機器人專案成效評估與跨部門導入檢討報告撰寫，曾輔導超過八十家電機、重電、精密製造與能源產業建立導入後量化追蹤機制，協助上百場導入成果簡報通過高層審核並順利拍板擴大導入範圍</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機ID自動化整合部門的工程專員陳建宏，處長剛在LINE丟來一句『這個要拿去給總座報告，弄漂亮一點！』，我手上卻只有上週RPA導入檢討會逐字稿、七個單位的LINE回報心得（抱怨稱讚都有），還有模擬數據顯示半年工時節省約三成、錯誤率下降兩成的零星數字，全部純文字沒排版。後天一早就要交件，我一個人整理到快崩潰，最怕漏掉哪個單位的抱怨、或把數字對錯位置</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請將這些原始資料整理成一份10到12頁的正式檢討會成果簡報，比照總座報告規格排版，包含以下五項：(1)逐字稿去蕪存菁，整理成三大討論重點條列；(2)各單位LINE回報依抱怨與稱讚分兩欄呈現，標明反饋單位名稱；(3)半年工時節省與錯誤率下降數字製作成兩張長條圖，標示前後對比；(4)封面加總座關注的關鍵成果摘要；(5)結尾附改善追蹤表，列出負責單位與預計完成時間，讓處長可直接轉呈</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="斷路器耐候測試數據圖表 LG研發 研發工程師 數據圖表">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">斷路器耐候測試數據圖表</div>
+      <div class="th-meta"><span class="badge-bu">LG研發</span><span class="badge-role">研發工程師</span><span class="badge-tool tool-canvas">Gemini Canvas</span><span class="badge-kind">數據圖表</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1uh--wMNNNUrAwY6GeCKMjOMiskA8Bg2N/view" target="_blank" rel="noopener">S06-斷路器耐候測試數據.xlsx ｜ 三軸數據+上季對比+工程師碎念 ↗</a><span class="mat-hint">(下載後上傳 Gemini Canvas)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有40年經驗的電機產品可靠度測試專家，專精斷路器、變壓器與電力設備耐候循環測試數據分析與圖表化呈現，曾為超過六十家重電製造廠、上百場產品試驗把關溫濕度與循環數據品質，協助建立業界耐候測試異常判讀、批次趨勢比對與良率標準</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">主管在LINE上丟一句『這批數據明天要報處長，先整理一版給我』，我是士林電機LG研發部的研發工程師，桌上攤著耐候測試站TC-07的原始Excel，溫度、濕度、循環次數三軸資料，中間還有好幾格是空白的。我自己碎念某批次撐不過800次循環就異常，但上次測試的對比數字，別人的單位寫k次、我這批寫次數，兜不起來，今晚肯定又要留下來重抓數據</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請把這份原始數據整理成一張可以直接投影或貼進簡報的圖表，不做成多頁簡報，共五項要求：(1)先將次與k次單位統一換算成同一單位再繪圖；(2)用溫度、濕度、循環次數三軸座標呈現，空白欄位用虛線標出待補測；(3)異常批次以紅色標示並加註撐不過幾次循環；(4)疊加上次測試對比線，一眼看出退步或進步；(5)圖表下方加一行負責複測工程師與預計回補時間，方便主管轉呈處長</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="新人職前訓練教材包簡報 SS幕僚 教育訓練承辦 教材包">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">新人職前訓練教材包簡報</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">教育訓練承辦</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">教材包</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1hxS5Yq-0TT1t_C1VhdxxyTonmKHszKc5/view" target="_blank" rel="noopener">S07-新人訓練各單位重點.docx ｜ 各單位重點(信/LINE)+舊簡報殘段+去年回饋 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業人才發展與教育訓練規劃專家，專精新人職前訓練教材設計、跨部門重點彙整與簡報化呈現，曾輔導超過兩百家製造業與電機產業建立標準化新人教材制度，規劃執行上千場新人職前訓練課程，深諳如何將零散重點統整成一份好懂好用的教材。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機人資處的教育訓練承辦，人資主管在LINE上說『各單位重點你先併一版，新人下週報到要用』。目前手上有12個單位用Email和LINE回傳的訓練重點，長短不一；還有一份沿用三年的舊版簡報，裡面殘留整段忘記刪的舊組織架構文字；另外有去年37位新人的受訓心得回饋摘要，提到「內容太多記不住」。最麻煩的是好幾份內容都沒寫單位名稱，要自己一段一段猜是哪個單位交的。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請用這些素材做一份新人職前訓練教材包簡報：(1)全套15-18頁，統一標題、字級與條列格式，每單位獨立一頁；(2)每頁標註單位名稱與負責人，並附一張跨單位重點分布圖表讓主管一眼掌握；(3)刪除舊版簡報裡過時的組織架構文字，全面更新；(4)依去年心得回饋『內容太多記不住』，整理成一頁重點精簡表格；(5)末頁列出各單位待補齊項目、追蹤負責人與回覆期限，新人報到前逐一確認。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="年度ESG重點成果簡報 SS幕僚 總務企劃專員 年度成果">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">年度ESG重點成果簡報</div>
+      <div class="th-meta"><span class="badge-bu">SS幕僚</span><span class="badge-role">總務企劃專員</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">年度成果</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1s2fCoTvq4QTvASBdt2AIgGLaxYLj9skK/view" target="_blank" rel="noopener">S08-ESG年度進度雜項.txt ｜ 口頭進度逐字稿+LINE補時數,格式不一 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的企業永續發展與年度成果簡報顧問，專精ESG進度彙整、數據圖表化呈現與高階主管簡報設計，曾為上百家製造業與電力設備廠商規劃年度總座級簡報，輔導超過三百份企業永續與成果報告完成視覺化製作，擅長把零散口語數據整理成清楚圖表。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機總務處的總務企劃專員，總座室在LINE上交代『圖表做漂亮一點，年度那份下週要用』。我手上只有7個部門會議口頭報告ESG進度的逐字稿片段、事後才用LINE補傳的節能度數（約12萬度）、公益服務時數與教育訓練時數，還有一份只做到一半的統計Excel片段。最頭痛的是好幾個數字是主管口頭講的，跟Excel上的版本對不起來，我完全不確定哪個才是最新、最準的。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請用這些片段做一份年度ESG重點成果簡報：(1)全套12-15頁，走總座級簡報質感，標題與配色需統一好看；(2)每個部門口頭報告內容整理成一頁重點摘要，標明部門名稱；(3)節能度數、公益服務時數、教育訓練時數各做一張趨勢圖表，取代純文字數字；(4)口語數字與Excel初稿有出入的地方，特別標色提醒需再確認，不要直接照單全收；(5)末頁附上數字來源與最終覆核負責人，下週總座室要看前完成校對。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="產線工安改善提案簡報 BG機器 品保工程師 工安提案">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">產線工安改善提案簡報</div>
+      <div class="th-meta"><span class="badge-bu">BG機器</span><span class="badge-role">品保工程師</span><span class="badge-tool tool-manus">Manus</span><span class="badge-kind">工安提案</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1n9VBCmNvVpV3Muq6ZP6i9qeYvSY2FCvR/view" target="_blank" rel="noopener">S09-產線工安事件與提案料.docx ｜ 半年事件+三家報價,PM-05常出事 ↗</a><span class="mat-hint">(下載後上傳 Manus)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的製造業職業安全衛生顧問，專精產線工安風險評估、虛驚事件根因分析、設備汰換效益評估與工安改善提案簡報撰寫，輔導超過七十家電機與機械製造廠建立工安改善制度，經手上百件設備汰換預算提案，深諳如何說服高層核准。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">我是士林電機BG機器的品保工程師，昨天收到廠長在LINE傳來的一句『這次真的要提了，你先弄一版』。手上有近半年VMC系列產線共11起異常與虛驚事件紀錄，格式是表格夾雜口語敘述，有些只寫「差點被機台夾到」沒寫細節，另外還有幾張設備汰換報價片段與同業改善案例隨手筆記，想爭取汰換預算的料雖然都在，卻散落在好幾個資料夾裡，我得想辦法整理成一份能上呈的提案。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">請製作一份7-8頁工安改善提案簡報：(1)事件盤點頁用時間軸圖整理近半年異常與虛驚事件，並依嚴重度標紅黃綠燈；(2)根因分析頁條列共通肇因與對應風險；(3)設備汰換方案頁把報價片段整理成金額效益對照表；(4)同業標竿頁列2-3個同業改善案例佐證可行性；(5)預算與時程頁標明申請金額、核准層級與追蹤負責人。語氣正式但不官腔，繁體中文，給廠長對高層報告用。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Manus)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+<div class="tcard" data-cat="slides" data-kw="設備採購三家比較看板 EG重電 設備管理專員 採購比較">
+  <div class="tcard-head" onclick="toggle(this)">
+    <div class="th-l">
+      <div class="th-title">設備採購三家比較看板</div>
+      <div class="th-meta"><span class="badge-bu">EG重電</span><span class="badge-role">設備管理專員</span><span class="badge-tool tool-canvas">Gemini Canvas</span><span class="badge-kind">採購比較</span></div>
+    </div>
+    <i class="bi bi-chevron-down th-chev"></i>
+  </div>
+  <div class="tcard-body">
+    <div class="mat"><i class="bi bi-paperclip"></i> 練習素材:<a href="https://drive.google.com/file/d/1HWdPT298pBICF_o3wxUrkwldF4psSzEb/view" target="_blank" rel="noopener">S10-設備採購三家報價.xlsx ｜ 三家報價,幣別稅別交期不一 ↗</a><span class="mat-hint">(下載後上傳 Gemini Canvas)</span></div>
+    <label class="fld-l"><span class="dot r">R</span> 角色 Role <span class="hint">你是誰(這格通常照用就好)</span></label>
+    <textarea class="fld role" rows="4">你是擁有 40 年經驗的工業設備採購評估顧問，專精重電廠房機台選型與跨廠商報價結構拆解，尤其擅長把未稅含稅混雜、交期單位不一的報價資料整理成單一比較基準，曾輔導超過一百二十家製造業工廠完成關鍵設備採購決策，協助建立跨供應商可直接比較的評選標準。</textarea>
+    <label class="fld-l"><span class="dot c">C</span> 情境 Context <span class="hint">⚠️ 把姓名 / 部門 / 數字 / 批號 / 日期改成你自己的</span></label>
+    <textarea class="fld context" rows="6">主管在LINE上問我『你們是不是有共識了禮拜五要簽』，我是士林電機EG重電事業部的設備管理專員，手邊有A、B、C三家設備商規格報價Excel，A家未稅98萬交期填6週、B家含稅112萬填42天、C家連未稅含稅都沒註明，還有工程師阿明口頭補充的比較心得潦草寫在便利貼上，加上上週現場勘查空間的照片文字描述，全部格式兜不起來，禮拜五前得生出一張能讓主管一眼比出優劣的圖表。</textarea>
+    <label class="fld-l"><span class="dot e">E</span> 期望 Expectation <span class="hint">要什麼格式、幾點要求(可微調)</span></label>
+    <textarea class="fld expect" rows="6">(1)先把三家報價換算成同一基準，未稅一律加5%換算含稅、交期一律換算成天數，不要週天混用；(2)最終只交出一張可直接投影或貼進簡報的比較圖表，不做多頁簡報，用表格或雷達圖同時呈現價格、交期、規格三個維度；(3)把工程師口語比較心得整理成加分扣分評語，對應標註在三家廠商欄位下方；(4)現場勘查照片的重點文字濃縮成一行小備註放在圖表角落；(5)圖表下方註明『禮拜五前需完成簽核』字樣與負責追蹤人姓名。</textarea>
+    <div class="btns">
+      <button class="btn-gen" onclick="gen(this)"><i class="bi bi-stars"></i> 產生指令</button>
+      <button class="btn-reset" onclick="resetCard(this)"><i class="bi bi-arrow-counterclockwise"></i> 還原範例</button>
+    </div>
+    <div class="out-wrap" style="display:none">
+      <div class="out-top"><span><i class="bi bi-clipboard-check"></i> 完整指令(複製後貼到 Gemini)</span>
+        <button class="btn-copy" onclick="cp(this)"><i class="bi bi-clipboard"></i> 複製</button></div>
+      <pre class="out"></pre>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="empty" id="empty"><i class="bi bi-search"></i> 找不到符合的模板,換個關鍵字試試</div>
+
+  <div class="sec-t">課程用到的 AI 工具</div>
+  <div class="toollist">
+    <div class="tool-card"><b>Gemini <span style="color:var(--orange)">主角</span></b><span class="role">全能主力:草稿、改寫、通知、報表</span><br><a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com ↗</a></div>
+    <div class="tool-card"><b>Manus</b><span class="role">丟資料直接出完整交付物、簡報</span><br><a href="https://manus.im" target="_blank" rel="noopener">manus.im ↗</a></div>
+    <div class="tool-card"><b>會議記錄小幫手</b><span class="role">錄音→逐字稿→摘要→待辦</span><br><span style="color:var(--grey)">課堂發放連結 / 課程 LINE 群組</span></div>
+    <div class="tool-card"><b>Perplexity</b><span class="role">查規格、法規、競品資料</span><br><a href="https://www.perplexity.ai" target="_blank" rel="noopener">perplexity.ai ↗</a></div>
+    <div class="tool-card"><b>NotebookLM</b><span class="role">把多份文件變成問答知識庫</span><br><a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com ↗</a></div>
+    <div class="tool-card"><b>Claude</b><span class="role">超長文件、深度數據解讀</span><br><a href="https://claude.ai" target="_blank" rel="noopener">claude.ai ↗</a></div>
+  </div>
+
+  <div class="teacher">
+    <h3>阿峰老師（黃敬峰 / AI峰哥）</h3>
+    <div class="t-sub">企業 AI 實戰培訓專家</div>
+    <p>專注把生成式 AI 變成企業「每天用得上」的生產力工具。累積 400+ 企業培訓、300+ 場演講、10,000+ 學員,滿意度 4.7+。主張「你是機長,AI 是機組人員」——AI 幫你飛,判斷與責任還是你的。</p>
+    <div class="t-contact"><i class="bi bi-envelope"></i> <a href="mailto:ai@autolab.cloud">ai@autolab.cloud</a>　｜　<i class="bi bi-globe"></i> <a href="https://www.autolab.cloud" target="_blank" rel="noopener">www.autolab.cloud</a></div>
+  </div>
+</div>
+
+<footer><div class="wrap">士林電機 工廠 AI 應用・初階實戰　｜　7/22・7/23・7/28 新竹湖口<br>© 2026 <b>阿峰老師</b> · 本頁為士林電機課程專屬教學工具,模板情境皆為教學模擬</div></footer>
+
+<script>
+function toggle(h){h.parentElement.classList.toggle('open')}
+function flt(b){document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');apply()}
+function doSearch(){apply()}
+function apply(){
+  var f=document.querySelector('.fbtn.active').dataset.f;
+  var q=document.getElementById('search').value.trim().toLowerCase();
+  var n=0;
+  document.querySelectorAll('.tcard').forEach(function(c){
+    var okF=(f==='all'||c.dataset.cat===f);
+    var okQ=(!q||c.dataset.kw.toLowerCase().indexOf(q)>-1||c.querySelector('.th-title').textContent.toLowerCase().indexOf(q)>-1);
+    var show=okF&&okQ; c.style.display=show?'':'none'; if(show)n++;
+  });
+  document.getElementById('empty').style.display=n?'none':'block';
+}
+function gen(btn){
+  var c=btn.closest('.tcard');
+  var r=c.querySelector('.role').value.trim();
+  var ctx=c.querySelector('.context').value.trim();
+  var e=c.querySelector('.expect').value.trim();
+  var p='請根據以下「角色、情境、期望」三要素,產出專業、精確、可直接使用的內容。\n\n【角色】\n'+r+'\n\n【情境】\n'+ctx+'\n\n【期望】\n'+e;
+  var w=c.querySelector('.out-wrap'); w.style.display='block';
+  c.querySelector('.out').textContent=p;
+  w.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function cp(btn){
+  var t=btn.closest('.out-wrap').querySelector('.out').textContent;
+  navigator.clipboard.writeText(t).then(function(){
+    btn.classList.add('done');btn.innerHTML='<i class="bi bi-check-lg"></i> 已複製!';
+    setTimeout(function(){btn.classList.remove('done');btn.innerHTML='<i class="bi bi-clipboard"></i> 複製'},1800);
+  });
+}
+var ORIG={};
+document.querySelectorAll('.tcard').forEach(function(c,i){
+  ORIG[i]={r:c.querySelector('.role').value,c:c.querySelector('.context').value,e:c.querySelector('.expect').value};
+  c.dataset.idx=i;
+});
+function resetCard(btn){
+  var c=btn.closest('.tcard');var i=c.dataset.idx;
+  c.querySelector('.role').value=ORIG[i].r;c.querySelector('.context').value=ORIG[i].c;c.querySelector('.expect').value=ORIG[i].e;
+  c.querySelector('.out-wrap').style.display='none';
+}
+</script>
+</body></html>
