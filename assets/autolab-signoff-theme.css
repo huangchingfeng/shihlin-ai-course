@@ -1,0 +1,105 @@
+/* ============================================================
+   Autolab Sign-Off 換膚層｜shihlin.autolab.cloud（士林電機 AI 提示詞產生器）2026-10-11
+   客戶課程站：保留士林電機名稱與文字，只換外框（色、字、方角、簽名線、Autolab 章在講師區）。
+   本頁沒有預約／聊內訓鈕，所以全頁不用橘 #FF6B35。
+   拿掉 </head> 前那行 link 就回到舊樣子。
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap");
+
+:root {
+  --so-teal: #00708A; --so-teal-dk: #005A6F; --so-teal-lt: #E8F4F6;
+  --so-ink: #1C1C1E; --so-sub: #636366; --so-mist: #F5F5F7; --so-line: #E5E5EA;
+  --so-mango: #FFC233; --so-mango-lt: #FFF1D6; --so-orchid: #9C2A6B; --so-orchid-lt: #F6E6F0;
+  /* 接管頁面原本的變數 */
+  --brand: var(--so-teal); --brand-d: var(--so-teal-dk);
+  --ink: var(--so-ink); --grey: var(--so-sub); --bg: var(--so-mist); --line: var(--so-line);
+  --orange: var(--so-orchid); --navy: var(--so-ink);
+  --r: var(--so-teal); --c: var(--so-orchid); --e: var(--so-ink); --ok: var(--so-teal);
+}
+html body { font-family: "Inter", "Noto Sans TC", sans-serif; }
+html body h1, html body h2, html body h3, html body .sec-t, html body .stat b { font-family: "Inter Tight", "Noto Sans TC", sans-serif; letter-spacing: -0.01em; }
+
+/* Hero：白底＋墨色簽名線，章壓在線上靠右 */
+html body header.hero {
+  position: relative; background: #FFFFFF; color: var(--so-ink);
+  border-bottom: 0; padding: 52px 0 84px;
+}
+html body header.hero::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 40px; height: 3px; background: var(--so-ink);
+}
+html body header.hero::after {
+  content: ""; position: absolute; right: max(24px, calc((100% - 1080px) / 2)); bottom: 41.5px;
+  width: 72px; height: 72px; transform: translateY(50%); border-radius: 50%;
+  background: #FFFFFF url("autolab-icon-64.svg") center / contain no-repeat;
+}
+html body .hero .kick {
+  display: inline-block; background: var(--so-mango); color: var(--so-ink); opacity: 1;
+  padding: 4px 12px; border-radius: 2px; letter-spacing: .08em; font-family: "JetBrains Mono", "Noto Sans TC", monospace;
+}
+html body .hero h1 { color: var(--so-ink); }
+html body .hero .sub { color: var(--so-sub); opacity: 1; }
+html body .hero .motto { background: var(--so-teal-lt); border: 0; border-left: 3px solid var(--so-teal); border-radius: 2px; color: var(--so-ink); }
+html body .stat { border-top: 4px solid var(--so-teal); background: var(--so-mist); border-radius: 4px; padding: 10px 18px 8px; min-width: 120px; }
+html body .stat:nth-child(2) { border-top-color: var(--so-mango); }
+html body .stat:nth-child(3) { border-top-color: var(--so-orchid); }
+html body .stat:nth-child(4) { border-top-color: var(--so-ink); }
+html body .stat b { color: var(--so-ink); font-weight: 800; }
+html body .stat span { color: var(--so-sub); opacity: 1; }
+
+/* 黃金三角卡：不再壓到 hero 上 */
+html body .info { margin: 24px auto 20px; border-radius: 4px; box-shadow: none; }
+html body .info h2 { color: var(--so-ink); }
+html body .info h2 .bi { color: var(--so-teal); }
+html body .rce-box { border-radius: 4px; }
+html body .rce-box.r { background: var(--so-teal-lt); }
+html body .rce-box.c { background: var(--so-orchid-lt); }
+html body .rce-box.e { background: var(--so-mango-lt); border-left-color: var(--so-mango); }
+html body .dot.e { background: var(--so-mango); color: var(--so-ink); }
+html body .step { border-radius: 4px; }
+html body .step .n { border-radius: 4px; }
+html body .pilot { background: var(--so-mango-lt); border-color: var(--so-mango); color: var(--so-ink); border-radius: 4px; }
+
+/* 區塊標題：芒果色條 */
+html body .sec-t { color: var(--so-ink); }
+html body .sec-t::before { background: var(--so-mango); border-radius: 0; }
+html body .warn { border-radius: 4px; }
+
+/* 篩選與卡片 */
+html body .search, html body .fld { border-radius: 4px; }
+html body .search:focus, html body .fld:focus { box-shadow: 0 0 0 3px rgba(0,112,138,.15); }
+html body .fbtn { border-radius: 4px; border-width: 1px; color: var(--so-ink); }
+html body .fbtn:hover { border-color: var(--so-teal); color: var(--so-teal); }
+html body .fbtn.active { background: var(--so-ink); border-color: var(--so-ink); color: #FFFFFF; }
+html body .tcard { border-radius: 4px; box-shadow: none; }
+html body .tcard.open { border-color: var(--so-teal); box-shadow: inset 4px 0 0 var(--so-teal); }
+html body .th-meta span { border-radius: 2px; }
+html body .badge-role { background: var(--so-teal-lt); color: var(--so-teal-dk); }
+html body .tool-gemini { background: var(--so-teal); }
+html body .tool-manus { background: var(--so-orchid); }
+html body .tool-canvas { background: var(--so-ink); }
+html body .tool-meet { background: var(--so-teal-dk); }
+html body .mat { background: var(--so-mango-lt); border-color: var(--so-mango); color: var(--so-ink); border-radius: 4px; }
+html body .mat a { color: var(--so-orchid); }
+html body .fld-l .dot { border-radius: 2px; }
+html body .btn-gen, html body .btn-reset { border-radius: 4px; }
+html body .btn-copy { border-radius: 4px; }
+html body .btn-copy.done { background: var(--so-teal-dk); }
+html body .out { border-radius: 4px; }
+html body .tool-card { border-radius: 4px; }
+
+/* 講師區：墨底＋Autolab 章 */
+html body .teacher { position: relative; border-radius: 4px; padding-right: 110px; }
+html body .teacher::before {
+  content: ""; position: absolute; top: 26px; right: 28px; width: 56px; height: 56px;
+  background: url("autolab-seal-reverse.svg") center / contain no-repeat;
+}
+html body .teacher .t-sub { color: var(--so-mango); font-family: "JetBrains Mono", "Noto Sans TC", monospace; }
+html body .teacher .t-contact a { color: var(--so-mango); }
+html body footer b { color: var(--so-teal); }
+
+@media (max-width: 600px) {
+  html body header.hero::after { width: 48px; height: 48px; right: 16px; }
+  html body .stat { min-width: 0; padding: 8px 12px 6px; }
+  html body .teacher { padding-right: 30px; padding-top: 80px; }
+  html body .teacher::before { top: 20px; left: 30px; right: auto; width: 44px; height: 44px; }
+}
